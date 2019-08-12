@@ -16,6 +16,7 @@
 		094795812301966A00746E92 /* itWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094795802301966A00746E92 /* itWeather.swift */; };
 		09479583230196EA00746E92 /* mainTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09479582230196EA00746E92 /* mainTemperature.swift */; };
 		09479586230197D600746E92 /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09479585230197D600746E92 /* NetworkData.swift */; };
+		CA8303122301F0530075825A /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8303112301F0530075825A /* UserNotification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		094795802301966A00746E92 /* itWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itWeather.swift; sourceTree = "<group>"; };
 		09479582230196EA00746E92 /* mainTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTemperature.swift; sourceTree = "<group>"; };
 		09479585230197D600746E92 /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
+		CA8303112301F0530075825A /* UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		0947956823016C6C00746E92 /* NearbyWeather */ = {
 			isa = PBXGroup;
 			children = (
+				CA8303102301F02F0075825A /* UserNotifications */,
 				094795842301972200746E92 /* Network */,
 				0947957D23018C1400746E92 /* Models */,
 				0947957B23018BD900746E92 /* View */,
@@ -106,6 +109,14 @@
 				09479585230197D600746E92 /* NetworkData.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		CA8303102301F02F0075825A /* UserNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				CA8303112301F0530075825A /* UserNotification.swift */,
+			);
+			path = UserNotifications;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09479586230197D600746E92 /* NetworkData.swift in Sources */,
+				CA8303122301F0530075825A /* UserNotification.swift in Sources */,
 				0947956C23016C6C00746E92 /* ViewController.swift in Sources */,
 				0947956A23016C6C00746E92 /* AppDelegate.swift in Sources */,
 				0947957F2301959800746E92 /* mainWeather.swift in Sources */,
@@ -261,7 +273,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -316,7 +328,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -331,13 +343,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6WZ95SZJW5;
+				DEVELOPMENT_TEAM = UK93JB3S2G;
 				INFOPLIST_FILE = NearbyWeather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = my.orik.86.NearbyWeather;
+				PRODUCT_BUNDLE_IDENTIFIER = my.Aleksandr.NearbyWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -349,13 +361,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6WZ95SZJW5;
+				DEVELOPMENT_TEAM = UK93JB3S2G;
 				INFOPLIST_FILE = NearbyWeather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = my.orik.86.NearbyWeather;
+				PRODUCT_BUNDLE_IDENTIFIER = my.Aleksandr.NearbyWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

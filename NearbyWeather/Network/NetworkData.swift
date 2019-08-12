@@ -6,22 +6,20 @@
 //  Copyright © 2019 orik. All rights reserved.
 //
 import Foundation
-//import UIKit
+import UIKit
+class NetworkData {
+    private init() {  }
+    static let shared: NetworkData = NetworkData()
+    
 
-func getWeatherInfo(lat: Double, lon: Double) {
-
+func getWeatherInfo(lat: Double, lon: Double, result: @escaping ((mainWeather) -> ())) {
+   
     var urlComponents = URLComponents()
     urlComponents.scheme = "https"
     urlComponents.host = "api.openweathermap.org"
-    urlComponents.path = "data/2.5/weather"
-    urlComponents.queryItems = [URLQueryItem(name: "lat", value: String(lat)),
-                                URLQueryItem(name: "lon", value: String(lon)),
-                                URLQueryItem(name: "appid", value: "57c7cb446dbc8918541b6ce92073239e")
-                                ]
-     print(urlComponents)
-    print(urlComponents.url!.absoluteString)
-    if urlComponents.url !=  nil {
-        print(urlComponents.url!)
+    urlComponents.path = "/data/2.5/weather"
+    urlComponents.queryItems = [URLQueryItem(name: "lat", value: String(lat)), URLQueryItem(name: "lon", value: String(lon)), URLQueryItem(name: "units", value: "metric"), URLQueryItem(name: "appid", value: "57c7cb446dbc8918541b6ce92073239e")]
+
     var request = URLRequest(url: urlComponents.url!)
    
     request.httpMethod = "GET"
@@ -33,9 +31,9 @@ func getWeatherInfo(lat: Double, lon: Double) {
         
         if data != nil {
             decoderWeather = try? JSONDecoder().decode(mainWeather.self, from: data!)
-            
+            result(decoderWeather!)
+            print(#line,"Temperature: ",decoderWeather!.main.temp!)
         }
-        print(decoderWeather!)
-    }
+    }.resume()
     }
 }

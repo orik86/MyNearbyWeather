@@ -9,6 +9,6 @@
 import Foundation
 
 class mainWeather: Codable {
-    var weather: itWeather
+    //var weather: itWeather
     var main: mainTemperature
 }

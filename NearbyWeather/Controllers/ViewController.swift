@@ -7,15 +7,17 @@
 //
 
 import UIKit
+
 import CoreLocation
 
 class ViewController: UIViewController {
+    var ourWeather: mainWeather?
+    var lastTemperature: Float = 0.0
 
     @IBOutlet var xLoc: UILabel!
-    
     @IBOutlet var yLoc: UILabel!
-    
     @IBOutlet var city: UILabel!
+    @IBOutlet var curentTemperature: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,11 +28,11 @@ class ViewController: UIViewController {
 
     let manager: CLLocationManager = {
         let locationManager = CLLocationManager()
-        //
-        locationManager.desiredAccuracy = 1
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.distanceFilter = 5
         locationManager.pausesLocationUpdatesAutomatically = false
-        locationManager.showsBackgroundLocationIndicator = true
+        locationManager.showsBackgroundLocationIndicator = false
+        locationManager.allowsBackgroundLocationUpdates = true
         
         return locationManager
     }()
@@ -43,18 +45,33 @@ class ViewController: UIViewController {
         geoCoder.reverseGeocodeLocation(location!, completionHandler: {(placemark,error) -> Void in
             if let city = placemark?[0].self {
                 self.city.text = String(city.locality!)
-                
             }
         })
-        xLoc.text = String((coordinate!.latitude * 1000).rounded() / 1000)
-        yLoc.text = String((coordinate!.longitude * 1000).rounded() / 1000)
-        
-        if location != nil {
-        getWeatherInfo(lat: coordinate!.latitude, lon: coordinate!.longitude)
+        xLoc.text = "X: " + String((coordinate!.latitude * 1000).rounded() / 1000)
+        print(#line,"latitude:",xLoc.text!)
+        yLoc.text = "Y: " + String((coordinate!.longitude * 1000).rounded() / 1000)
+        print(#line,"longitude:",yLoc.text!)
+        if coordinate != nil {
+            NetworkData.shared.getWeatherInfo(lat: coordinate!.latitude, lon: coordinate!.latitude, result: {(model) in
+                DispatchQueue.main.async {
+                    self.curentTemperature.text = String(model.main.temp!)
+                }
+                self.lastTemperatureChange(nowTemperature: model.main.temp!)
+                
+            })
+        }
     }
+    
+    func lastTemperatureChange(nowTemperature: Float) {
+        if abs(lastTemperature - nowTemperature) > 4 {
+            tempereatureNotification(temperature: (lastTemperature - nowTemperature))
+            lastTemperature = nowTemperature
+    
+        }
+    }
+}
 
-}
-}
+
 
 
 // MARK: - CLLocationManagerDelegate
@@ -68,13 +85,12 @@ extension ViewController: CLLocationManagerDelegate {
         case .restricted, .denied:
             print("No work")
         case .authorizedAlways:
-                print("It's ok")
+                print("mogno?")
         case .authorizedWhenInUse:
                 print("robim")
                 manager.requestAlwaysAuthorization()
         @unknown default:
             print("WhatIsThis?")
-            
         }
     }
     
@@ -85,8 +101,4 @@ extension ViewController: CLLocationManagerDelegate {
         }
         print(locationError.errorCode)
     }
-    
-  
-    
-
 }
