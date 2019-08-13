@@ -32,6 +32,12 @@ func getWeatherInfo(lat: Double, lon: Double, result: @escaping ((mainWeather) -
         if data != nil {
             decoderWeather = try? JSONDecoder().decode(mainWeather.self, from: data!)
             result(decoderWeather!)
+            
+            let dataFormater = DateFormatter()
+            dataFormater.dateStyle = .short
+            dataFormater.timeStyle = .short
+            let data = Date()
+            print(dataFormater.string(from: data))
             print(#line,"Temperature: ",decoderWeather!.main.temp!)
         }
     }.resume()

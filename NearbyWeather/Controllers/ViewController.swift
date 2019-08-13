@@ -7,23 +7,27 @@
 //
 
 import UIKit
-
 import CoreLocation
 
 class ViewController: UIViewController {
     var ourWeather: mainWeather?
     var lastTemperature: Float = 0.0
+    var coordinate: CLLocationCoordinate2D?
 
     @IBOutlet var xLoc: UILabel!
     @IBOutlet var yLoc: UILabel!
     @IBOutlet var city: UILabel!
     @IBOutlet var curentTemperature: UILabel!
-    
+    @IBOutlet var currentPressure: UILabel!
+    @IBOutlet var currentHumidity: UILabel!
+   
     override func viewDidLoad() {
         super.viewDidLoad()
        
         manager.delegate = self
         manager.startUpdatingLocation()
+        timerRun()
+        
     }
 
     let manager: CLLocationManager = {
@@ -38,44 +42,41 @@ class ViewController: UIViewController {
     }()
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         let location = locations.last
-        let coordinate = location?.coordinate
+        coordinate = location?.coordinate
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(location!, completionHandler: {(placemark,error) -> Void in
             if let city = placemark?[0].self {
                 self.city.text = String(city.locality!)
             }
         })
-        xLoc.text = "X: " + String((coordinate!.latitude * 1000).rounded() / 1000)
+        xLoc.text = "Lat: " + String((coordinate!.latitude * 1000).rounded() / 1000)
         print(#line,"latitude:",xLoc.text!)
-        yLoc.text = "Y: " + String((coordinate!.longitude * 1000).rounded() / 1000)
+        yLoc.text = "Long: " + String((coordinate!.longitude * 1000).rounded() / 1000)
         print(#line,"longitude:",yLoc.text!)
-        if coordinate != nil {
-            NetworkData.shared.getWeatherInfo(lat: coordinate!.latitude, lon: coordinate!.latitude, result: {(model) in
-                DispatchQueue.main.async {
-                    self.curentTemperature.text = String(model.main.temp!)
-                }
-                self.lastTemperatureChange(nowTemperature: model.main.temp!)
-                
-            })
-        }
+        if coordinate != nil { updateTemperaure() }
     }
     
     func lastTemperatureChange(nowTemperature: Float) {
-        if abs(lastTemperature - nowTemperature) > 4 {
+        if abs(lastTemperature - nowTemperature) > 3 {
             tempereatureNotification(temperature: (lastTemperature - nowTemperature))
             lastTemperature = nowTemperature
-    
         }
+    }
+    
+    @objc func updateTemperaure() {
+        NetworkData.shared.getWeatherInfo(lat: coordinate!.latitude, lon: coordinate!.latitude, result: {(model) in
+            DispatchQueue.main.async {
+                self.curentTemperature.text = String(model.main.temp!) + "℃"
+                self.currentPressure.text = String(model.main.pressure!) + "hPa"
+                self.currentHumidity.text = String(model.main.humidity!) + "%"
+            }
+            self.lastTemperatureChange(nowTemperature: model.main.temp!)
+        })
     }
 }
 
-
-
-
 // MARK: - CLLocationManagerDelegate
-
 extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
@@ -102,3 +103,28 @@ extension ViewController: CLLocationManagerDelegate {
         print(locationError.errorCode)
     }
 }
+
+
+
+// MARK: - Timer
+extension ViewController {
+    
+    @objc func timerFunc(timer: Timer) {
+        var backgroundTask = UIApplication.shared.beginBackgroundTask()
+        
+        updateTemperaure()
+        
+        if backgroundTask != UIBackgroundTaskIdentifier.invalid {
+            if UIApplication.shared.applicationState == .active {
+                UIApplication.shared.endBackgroundTask(backgroundTask)
+                backgroundTask = UIBackgroundTaskIdentifier.invalid
+            }
+        }
+    }
+    /* update by timer */
+    func timerRun() {
+        let timer = Timer.init(timeInterval: 300, target: self, selector: #selector(updateTemperaure), userInfo: nil, repeats: true)
+        RunLoop.current.add(timer, forMode: .common)
+    }
+}
+
