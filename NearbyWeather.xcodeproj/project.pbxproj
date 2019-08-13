@@ -18,6 +18,12 @@
 		09479586230197D600746E92 /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09479585230197D600746E92 /* NetworkData.swift */; };
 		09D6887D2302D3860021E771 /* windWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6887C2302D3860021E771 /* windWeather.swift */; };
 		CA8303122301F0530075825A /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8303112301F0530075825A /* UserNotification.swift */; };
+		CA830316230337660075825A /* OneDayTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA830315230337660075825A /* OneDayTemperature.swift */; };
+		CA830318230338360075825A /* AllDayTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA830317230338360075825A /* AllDayTemperature.swift */; };
+		CA83031A23033A2A0075825A /* MainAllWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83031923033A2A0075825A /* MainAllWeather.swift */; };
+		CA83031C23033A870075825A /* AllNetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83031B23033A870075825A /* AllNetworkData.swift */; };
+		CA83031F23033C090075825A /* ViewController+CClocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83031E23033C090075825A /* ViewController+CClocationDelegate.swift */; };
+		CA83032123033C710075825A /* ViewController+Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83032023033C710075825A /* ViewController+Timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +40,12 @@
 		09479585230197D600746E92 /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
 		09D6887C2302D3860021E771 /* windWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = windWeather.swift; sourceTree = "<group>"; };
 		CA8303112301F0530075825A /* UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
+		CA830315230337660075825A /* OneDayTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneDayTemperature.swift; sourceTree = "<group>"; };
+		CA830317230338360075825A /* AllDayTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDayTemperature.swift; sourceTree = "<group>"; };
+		CA83031923033A2A0075825A /* MainAllWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAllWeather.swift; sourceTree = "<group>"; };
+		CA83031B23033A870075825A /* AllNetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNetworkData.swift; sourceTree = "<group>"; };
+		CA83031E23033C090075825A /* ViewController+CClocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CClocationDelegate.swift"; sourceTree = "<group>"; };
+		CA83032023033C710075825A /* ViewController+Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Timer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,12 +78,13 @@
 		0947956823016C6C00746E92 /* NearbyWeather */ = {
 			isa = PBXGroup;
 			children = (
-				CA8303102301F02F0075825A /* UserNotifications */,
-				094795842301972200746E92 /* Network */,
 				0947957D23018C1400746E92 /* Models */,
 				0947957B23018BD900746E92 /* View */,
 				0947957C23018BE800746E92 /* Controllers */,
 				0947957523016C7100746E92 /* Info.plist */,
+				CA8303102301F02F0075825A /* UserNotifications */,
+				CA83031D23033BAD0075825A /* Extension */,
+				094795842301972200746E92 /* Network */,
 			);
 			path = NearbyWeather;
 			sourceTree = "<group>";
@@ -98,10 +111,8 @@
 		0947957D23018C1400746E92 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0947957E2301959800746E92 /* mainWeather.swift */,
-				09479582230196EA00746E92 /* mainTemperature.swift */,
-				094795802301966A00746E92 /* itWeather.swift */,
-				09D6887C2302D3860021E771 /* windWeather.swift */,
+				CA8303142303366D0075825A /* futureTemperature */,
+				CA8303132303363C0075825A /* nowTemperature */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -110,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				09479585230197D600746E92 /* NetworkData.swift */,
+				CA83031B23033A870075825A /* AllNetworkData.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -120,6 +132,36 @@
 				CA8303112301F0530075825A /* UserNotification.swift */,
 			);
 			path = UserNotifications;
+			sourceTree = "<group>";
+		};
+		CA8303132303363C0075825A /* nowTemperature */ = {
+			isa = PBXGroup;
+			children = (
+				094795802301966A00746E92 /* itWeather.swift */,
+				09D6887C2302D3860021E771 /* windWeather.swift */,
+				09479582230196EA00746E92 /* mainTemperature.swift */,
+				0947957E2301959800746E92 /* mainWeather.swift */,
+			);
+			path = nowTemperature;
+			sourceTree = "<group>";
+		};
+		CA8303142303366D0075825A /* futureTemperature */ = {
+			isa = PBXGroup;
+			children = (
+				CA830315230337660075825A /* OneDayTemperature.swift */,
+				CA830317230338360075825A /* AllDayTemperature.swift */,
+				CA83031923033A2A0075825A /* MainAllWeather.swift */,
+			);
+			path = futureTemperature;
+			sourceTree = "<group>";
+		};
+		CA83031D23033BAD0075825A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CA83031E23033C090075825A /* ViewController+CClocationDelegate.swift */,
+				CA83032023033C710075825A /* ViewController+Timer.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,10 +239,16 @@
 				CA8303122301F0530075825A /* UserNotification.swift in Sources */,
 				0947956C23016C6C00746E92 /* ViewController.swift in Sources */,
 				0947956A23016C6C00746E92 /* AppDelegate.swift in Sources */,
+				CA83032123033C710075825A /* ViewController+Timer.swift in Sources */,
+				CA83031F23033C090075825A /* ViewController+CClocationDelegate.swift in Sources */,
+				CA83031C23033A870075825A /* AllNetworkData.swift in Sources */,
 				0947957F2301959800746E92 /* mainWeather.swift in Sources */,
+				CA830316230337660075825A /* OneDayTemperature.swift in Sources */,
+				CA83031A23033A2A0075825A /* MainAllWeather.swift in Sources */,
 				09479583230196EA00746E92 /* mainTemperature.swift in Sources */,
 				09D6887D2302D3860021E771 /* windWeather.swift in Sources */,
 				094795812301966A00746E92 /* itWeather.swift in Sources */,
+				CA830318230338360075825A /* AllDayTemperature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

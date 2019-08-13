@@ -76,55 +76,5 @@ class ViewController: UIViewController {
     }
 }
 
-// MARK: - CLLocationManagerDelegate
-extension ViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
-        switch status {
-        case .notDetermined:
-            manager.requestWhenInUseAuthorization()
-        case .restricted, .denied:
-            print("No work")
-        case .authorizedAlways:
-                print("mogno?")
-        case .authorizedWhenInUse:
-                print("robim")
-                manager.requestAlwaysAuthorization()
-        @unknown default:
-            print("WhatIsThis?")
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        guard let locationError = error as? CLError else {
-            print(error)
-            return
-        }
-        print(locationError.errorCode)
-    }
-}
 
-
-
-// MARK: - Timer
-extension ViewController {
-    
-    @objc func timerFunc(timer: Timer) {
-        var backgroundTask = UIApplication.shared.beginBackgroundTask()
-        
-        updateTemperaure()
-        
-        if backgroundTask != UIBackgroundTaskIdentifier.invalid {
-            if UIApplication.shared.applicationState == .active {
-                UIApplication.shared.endBackgroundTask(backgroundTask)
-                backgroundTask = UIBackgroundTaskIdentifier.invalid
-            }
-        }
-    }
-    /* update by timer */
-    func timerRun() {
-        let timer = Timer.init(timeInterval: 300, target: self, selector: #selector(updateTemperaure), userInfo: nil, repeats: true)
-        RunLoop.current.add(timer, forMode: .common)
-    }
-}
 
