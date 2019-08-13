@@ -9,5 +9,6 @@
 import Foundation
 
 class  MainAllWeather: Codable {
-    var list: [AllDayTemperature]
+    var cnt: Int?
+    var list: [AllDayTemperature?]
 }

@@ -24,6 +24,7 @@
 		CA83031C23033A870075825A /* AllNetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83031B23033A870075825A /* AllNetworkData.swift */; };
 		CA83031F23033C090075825A /* ViewController+CClocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83031E23033C090075825A /* ViewController+CClocationDelegate.swift */; };
 		CA83032123033C710075825A /* ViewController+Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83032023033C710075825A /* ViewController+Timer.swift */; };
+		CA83032723034AC80075825A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83032623034AC80075825A /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		CA83031B23033A870075825A /* AllNetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNetworkData.swift; sourceTree = "<group>"; };
 		CA83031E23033C090075825A /* ViewController+CClocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CClocationDelegate.swift"; sourceTree = "<group>"; };
 		CA83032023033C710075825A /* ViewController+Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Timer.swift"; sourceTree = "<group>"; };
+		CA83032623034AC80075825A /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		0947957C23018BE800746E92 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CA83032623034AC80075825A /* TableViewController.swift */,
 				0947956923016C6C00746E92 /* AppDelegate.swift */,
 				0947956B23016C6C00746E92 /* ViewController.swift */,
 			);
@@ -248,6 +251,7 @@
 				09479583230196EA00746E92 /* mainTemperature.swift in Sources */,
 				09D6887D2302D3860021E771 /* windWeather.swift in Sources */,
 				094795812301966A00746E92 /* itWeather.swift in Sources */,
+				CA83032723034AC80075825A /* TableViewController.swift in Sources */,
 				CA830318230338360075825A /* AllDayTemperature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

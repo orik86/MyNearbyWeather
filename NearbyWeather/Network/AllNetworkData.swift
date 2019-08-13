@@ -5,9 +5,7 @@
 //  Created by Aleksandr Gazizov on 13/08/2019.
 //  Copyright © 2019 orik. All rights reserved.
 //
-
 import Foundation
-
 
 class AllNetworkData {
     private init() {  }
@@ -19,10 +17,9 @@ class AllNetworkData {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.openweathermap.org"
-        urlComponents.path = "/data/2.5/forecast/daily"
+        urlComponents.path = "/data/2.5/forecast"
         urlComponents.queryItems = [URLQueryItem(name: "lat", value: String(lat)),
                                     URLQueryItem(name: "lon", value: String(lon)),
-                                    URLQueryItem(name: "cnt", value: "10"),
                                     URLQueryItem(name: "units", value: "metric"),
                                     URLQueryItem(name: "appid", value: "57c7cb446dbc8918541b6ce92073239e")]
         
@@ -33,11 +30,12 @@ class AllNetworkData {
         
         task.dataTask(with: request) { (data, response, error) in
             guard error == nil else { return }
-            var decoderWeather: MainAllWeather?
+            var decoderAllWeather: MainAllWeather?
             
             if data != nil {
-                decoderWeather = try? JSONDecoder().decode(MainAllWeather.self, from: data!)
-                result(decoderWeather!)
+                decoderAllWeather = try? JSONDecoder().decode(MainAllWeather.self, from: data!)
+                result(decoderAllWeather!)
+                print(decoderAllWeather!.cnt ?? <#default value#>, decoderAllWeather?.list[0]?.main?.temp_max)
             }
             }.resume()
     }

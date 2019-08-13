@@ -9,11 +9,13 @@
 import UIKit
 import CoreLocation
 
+
 class ViewController: UIViewController {
     var ourWeather: mainWeather?
     var lastTemperature: Float = 0.0
     var coordinate: CLLocationCoordinate2D?
-
+   
+    
     @IBOutlet var xLoc: UILabel!
     @IBOutlet var yLoc: UILabel!
     @IBOutlet var city: UILabel!
@@ -21,13 +23,14 @@ class ViewController: UIViewController {
     @IBOutlet var currentPressure: UILabel!
     @IBOutlet var currentHumidity: UILabel!
    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
         manager.delegate = self
         manager.startUpdatingLocation()
         timerRun()
-        
     }
 
     let manager: CLLocationManager = {
@@ -61,6 +64,14 @@ class ViewController: UIViewController {
         if abs(lastTemperature - nowTemperature) > 3 {
             tempereatureNotification(temperature: (lastTemperature - nowTemperature))
             lastTemperature = nowTemperature
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "allWeatherSegue" {
+            let allWeather = segue.destination as! TableViewController
+            allWeather.lat = coordinate!.latitude
+            allWeather.lon = coordinate!.longitude
         }
     }
     
