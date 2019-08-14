@@ -8,7 +8,7 @@
 
 import Foundation
 
-class mainTemperature: Codable {
+class MainTemperature: Codable {
     var temp: Float?
     var pressure: Float?
     var humidity: Float?

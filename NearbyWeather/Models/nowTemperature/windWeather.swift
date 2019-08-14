@@ -8,6 +8,6 @@
 
 import Foundation
 
-class windWeather: Codable {
+class WindWeather: Codable {
     let speed: Float
 }

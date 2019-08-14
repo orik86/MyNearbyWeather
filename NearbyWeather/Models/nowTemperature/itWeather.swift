@@ -8,7 +8,7 @@
 
 import Foundation
 
-class itWeather: Codable {
+class ItWeather: Codable {
     var main: String?
     var description: String?
 }

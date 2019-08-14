@@ -13,7 +13,7 @@ class NetworkData {
     static let shared: NetworkData = NetworkData()
     
 
-func getWeatherInfo(lat: Double, lon: Double, result: @escaping ((mainWeather) -> ())) {
+func getWeatherInfo(lat: Double, lon: Double, result: @escaping ((MainWeather) -> ())) {
    
     var urlComponents = URLComponents()
     urlComponents.scheme = "https"
@@ -28,10 +28,10 @@ func getWeatherInfo(lat: Double, lon: Double, result: @escaping ((mainWeather) -
    
     task.dataTask(with: request) { (data, response, error) in
         guard error == nil else { return }
-        var decoderWeather: mainWeather?
+        var decoderWeather: MainWeather?
         
         if data != nil {
-            decoderWeather = try? JSONDecoder().decode(mainWeather.self, from: data!)
+            decoderWeather = try? JSONDecoder().decode(MainWeather.self, from: data!)
             result(decoderWeather!)
             
             let dataFormater = DateFormatter()

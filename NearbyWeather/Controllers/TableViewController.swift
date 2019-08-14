@@ -12,7 +12,7 @@ import UIKit
 class TableViewController: UITableViewController {
     var numbers = 0
     var numbersOfSection = 0
-    var AllWeather: MainAllWeather?
+    var allWeather: MainAllWeather?
     var lat: Double = 0.0
     var lon: Double = 0.0
     
@@ -26,7 +26,7 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let number = AllWeather?.list.count {
+        if let number = allWeather?.list.count {
             return number
         } else {return 0}
     }
@@ -42,11 +42,11 @@ class TableViewController: UITableViewController {
         let size = 0.05 * lCurrentWidth
         cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: size)
         cell.textLabel?.font = UIFont(name: "Helvetica", size: size)
-        if let cod = AllWeather?.list[indexPath.row].main.temp {
+        if let cod = allWeather?.list[indexPath.row].main.temp {
             cell.detailTextLabel?.text = String(cod) + "℃"
-            cell.textLabel?.text = AllWeather?.list[indexPath.row].dt_txt
+            cell.textLabel?.text = allWeather?.list[indexPath.row].dt_txt
            // print(AllWeather!.list[indexPath.row].weather[0].icon)
-            cell.imageView?.image = UIImage(named: AllWeather!.list[indexPath.row].weather[0].icon)
+            cell.imageView?.image = UIImage(named: allWeather!.list[indexPath.row].weather[0].icon)
         } else {
             cell.detailTextLabel?.text = "none"
         }
@@ -79,7 +79,7 @@ class TableViewController: UITableViewController {
                     self.tableView.reloadData()
                 }
                 
-                self.AllWeather = decoderAllWeather
+                self.allWeather = decoderAllWeather
             } catch let error {
                 print(error)
             }

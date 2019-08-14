@@ -11,7 +11,7 @@ import CoreLocation
 
 
 class ViewController: UIViewController {
-    var ourWeather: mainWeather?
+    var ourWeather: MainWeather?
     var lastTemperature: Float = 0.0
     var coordinate: CLLocationCoordinate2D?
    

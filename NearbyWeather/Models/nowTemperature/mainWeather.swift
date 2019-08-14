@@ -8,7 +8,7 @@
 // 57c7cb446dbc8918541b6ce92073239e
 import Foundation
 
-class mainWeather: Codable {
+class MainWeather: Codable {
     //var weather: itWeather
-    var main: mainTemperature
+    var main: MainTemperature
 }
