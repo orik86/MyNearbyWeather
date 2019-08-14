@@ -8,14 +8,18 @@
 
 import UIKit
 
+
+
+class SortingTableViewController: UITableViewController {
+    
+    var allWeather: MainAllWeather?
     var nameSection: [String] = []
     var countInSection: [Int] = []
     var y = -1
     var x = 1
     var count = 0
     var lastElement = ""
-class SortingTableViewController: UITableViewController {
-    var allWeather: MainAllWeather?
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         tableFill()
@@ -25,7 +29,7 @@ class SortingTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         return y
     }
 
@@ -80,6 +84,7 @@ class SortingTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+       
         return nameSection[section]
        
     }
