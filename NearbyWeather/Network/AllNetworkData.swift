@@ -35,7 +35,7 @@ class AllNetworkData {
             if data != nil {
                 decoderAllWeather = try? JSONDecoder().decode(MainAllWeather.self, from: data!)
                 result(decoderAllWeather!)
-                print(decoderAllWeather!.cnt ?? <#default value#>, decoderAllWeather?.list[0]?.main?.temp_max)
+                
             }
             }.resume()
     }

@@ -10,12 +10,10 @@ import Foundation
 
 class AllDayTemperature: Codable {
     
-   var dt: Int?
-   var main: OneDayTemperature?
-   // var pressure: Float?
-    //var humidity: Float
-    //var speed: Float
-    //var clouds: Float
-  
+
+    var main: OneDayTemperature
+    var dt_txt: String
+    var weather: [AllWeather]
+    
 
 }

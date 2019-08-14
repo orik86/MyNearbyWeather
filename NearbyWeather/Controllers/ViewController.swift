@@ -31,6 +31,8 @@ class ViewController: UIViewController {
         manager.delegate = self
         manager.startUpdatingLocation()
         timerRun()
+        updateUI()
+        
     }
 
     let manager: CLLocationManager = {
@@ -85,7 +87,21 @@ class ViewController: UIViewController {
             self.lastTemperatureChange(nowTemperature: model.main.temp!)
         })
     }
+    
+    func updateUI() {
+        let lCurrentWidth = self.view.frame.size.width;
+        let size = 0.05 * lCurrentWidth
+        let stackViews = self.view.subviews.compactMap{($0 as? UIStackView)}
+     
+        for stakView in stackViews {
+        
+            let labels = stakView.arrangedSubviews.compactMap{($0 as? UILabel)}
+            for label in labels {
+                label.font = UIFont(name: "Helvetica", size: size)
+        }
+        
+    }
 }
 
-
+}
 

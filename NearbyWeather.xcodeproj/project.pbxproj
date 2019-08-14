@@ -17,6 +17,7 @@
 		09479583230196EA00746E92 /* mainTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09479582230196EA00746E92 /* mainTemperature.swift */; };
 		09479586230197D600746E92 /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09479585230197D600746E92 /* NetworkData.swift */; };
 		09D6887D2302D3860021E771 /* windWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6887C2302D3860021E771 /* windWeather.swift */; };
+		CA5650D6230459FB001F622D /* AllWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5650D5230459FB001F622D /* AllWeather.swift */; };
 		CA8303122301F0530075825A /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8303112301F0530075825A /* UserNotification.swift */; };
 		CA830316230337660075825A /* OneDayTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA830315230337660075825A /* OneDayTemperature.swift */; };
 		CA830318230338360075825A /* AllDayTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA830317230338360075825A /* AllDayTemperature.swift */; };
@@ -40,6 +41,7 @@
 		09479582230196EA00746E92 /* mainTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainTemperature.swift; sourceTree = "<group>"; };
 		09479585230197D600746E92 /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
 		09D6887C2302D3860021E771 /* windWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = windWeather.swift; sourceTree = "<group>"; };
+		CA5650D5230459FB001F622D /* AllWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWeather.swift; sourceTree = "<group>"; };
 		CA8303112301F0530075825A /* UserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
 		CA830315230337660075825A /* OneDayTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneDayTemperature.swift; sourceTree = "<group>"; };
 		CA830317230338360075825A /* AllDayTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDayTemperature.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				CA830315230337660075825A /* OneDayTemperature.swift */,
 				CA830317230338360075825A /* AllDayTemperature.swift */,
 				CA83031923033A2A0075825A /* MainAllWeather.swift */,
+				CA5650D5230459FB001F622D /* AllWeather.swift */,
 			);
 			path = futureTemperature;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				CA8303122301F0530075825A /* UserNotification.swift in Sources */,
 				0947956C23016C6C00746E92 /* ViewController.swift in Sources */,
 				0947956A23016C6C00746E92 /* AppDelegate.swift in Sources */,
+				CA5650D6230459FB001F622D /* AllWeather.swift in Sources */,
 				CA83032123033C710075825A /* ViewController+Timer.swift in Sources */,
 				CA83031F23033C090075825A /* ViewController+CClocationDelegate.swift in Sources */,
 				CA83031C23033A870075825A /* AllNetworkData.swift in Sources */,
@@ -406,7 +410,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = my.Aleksandr.NearbyWeather;
+				PRODUCT_BUNDLE_IDENTIFIER = my.Aleksandr.MyNearbyWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -426,7 +430,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = my.Aleksandr.NearbyWeather;
+				PRODUCT_BUNDLE_IDENTIFIER = my.Aleksandr.MyNearbyWeather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
