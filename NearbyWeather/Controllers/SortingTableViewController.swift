@@ -45,7 +45,8 @@ class SortingTableViewController: UITableViewController {
         } else {
             cell.detailTextLabel?.text = "none"
         }
-        count += 1
+        if count < 39 {
+            count += 1} else { count = 0 }
         return cell
     }
     
@@ -66,7 +67,7 @@ class SortingTableViewController: UITableViewController {
                     print(">>>>", x)
                     if i != 0 {
                     countInSection.append(x)
-                    x = 0
+                    x = 1
                     }
               
                     
