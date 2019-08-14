@@ -19,9 +19,9 @@ class SortingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableFill()
-
+        tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,6 +51,8 @@ class SortingTableViewController: UITableViewController {
     }
     
     func tableFill() {
+        countInSection.removeAll()
+        nameSection.removeAll()
         if let count = allWeather?.list.count {
             for i in 0...count-1 {
                     var currentElement = allWeather!.list[i].dt_txt
@@ -69,13 +71,9 @@ class SortingTableViewController: UITableViewController {
                     countInSection.append(x)
                     x = 1
                     }
-              
-                    
                     print(">>>>", y)
                     nameSection.append(lastElement)
-                    
                 }
-            
             }
             countInSection.append(x)
         } else {return}
@@ -83,6 +81,7 @@ class SortingTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return nameSection[section]
+       
     }
 
 }
