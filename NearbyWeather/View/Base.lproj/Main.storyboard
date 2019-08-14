@@ -144,6 +144,7 @@
                         <outlet property="curentTemperature" destination="L8h-U0-Doh" id="wFv-hg-4px"/>
                         <outlet property="currentHumidity" destination="ffq-Iw-tQd" id="vaa-56-diy"/>
                         <outlet property="currentPressure" destination="QfV-Q2-RAl" id="2G0-3V-GRv"/>
+                        <outlet property="nextButton" destination="XzQ-Zg-ewE" id="8UQ-eM-5U0"/>
                         <outlet property="xLoc" destination="RGp-hD-q3G" id="ddt-Lo-Lkm"/>
                         <outlet property="yLoc" destination="YQ8-Oj-9y0" id="qIs-vR-hUl"/>
                     </connections>

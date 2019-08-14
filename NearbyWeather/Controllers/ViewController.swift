@@ -23,7 +23,8 @@ class ViewController: UIViewController {
     @IBOutlet var currentPressure: UILabel!
     @IBOutlet var currentHumidity: UILabel!
    
-
+    @IBOutlet var nextButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +93,7 @@ class ViewController: UIViewController {
         let lCurrentWidth = self.view.frame.size.width;
         let size = 0.05 * lCurrentWidth
         let stackViews = self.view.subviews.compactMap{($0 as? UIStackView)}
-     
+        nextButton.titleLabel?.font = UIFont(name: "Helvetica", size: size)
         for stakView in stackViews {
         
             let labels = stakView.arrangedSubviews.compactMap{($0 as? UILabel)}
