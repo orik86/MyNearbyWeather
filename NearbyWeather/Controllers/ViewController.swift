@@ -24,9 +24,8 @@ class ViewController: UIViewController {
     @IBOutlet var curentTemperature: UILabel!
     @IBOutlet var currentPressure: UILabel!
     @IBOutlet var currentHumidity: UILabel!
-   
     @IBOutlet var nextButton: UIButton!
-    
+    @IBOutlet var helloLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +35,10 @@ class ViewController: UIViewController {
         loadBase()
         timerRun()
         updateUI()
-        
-       
-        
+        animateHello()
+        self.view.addBackground()
     }
+  
 
     let manager: CLLocationManager = {
         let locationManager = CLLocationManager()
@@ -52,10 +51,17 @@ class ViewController: UIViewController {
         return locationManager
     }()
     func loadBase () {
-        city.text = baseTemeprature.city
-        curentTemperature.text = String(baseTemeprature.temp)
-        currentHumidity.text = String(baseTemeprature.hummidity)
-        currentPressure.text = String(baseTemeprature.pressure)
+        if realm.objects(Temperature.self).count == 0 {
+            try! realm.write {
+                realm.add(baseTemeprature)
+            }
+        }
+        let lastWeather = realm.objects(Temperature.self)
+        city.text = lastWeather.last?.city ?? "none"
+        curentTemperature.text = String((lastWeather.last?.temp ?? 0.0))
+        currentHumidity.text = String(lastWeather.last?.hummidity ?? 0.0)
+        currentPressure.text = String(lastWeather.last?.pressure ?? 0.0)
+        print(lastWeather.last?.temp ?? "", " OPOPPOPO  ",lastWeather.last?.city ?? "")
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -65,13 +71,14 @@ class ViewController: UIViewController {
         geoCoder.reverseGeocodeLocation(location!, completionHandler: {(placemark,error) -> Void in
             if let city = placemark?[0].self {
                 self.city.text = city.locality!
-                self.baseTemeprature.city = city.locality!
+                try! self.realm.write {
+                      self.baseTemeprature.city = city.locality!
+                }
             }
         })
         xLoc.text = "Lat: " + String((coordinate!.latitude * 1000).rounded() / 1000)
-        print(#line,"latitude:",xLoc.text!)
         yLoc.text = "Long: " + String((coordinate!.longitude * 1000).rounded() / 1000)
-        print(#line,"longitude:",yLoc.text!)
+       
         if coordinate != nil { updateTemperaure() }
     }
     
@@ -95,9 +102,11 @@ class ViewController: UIViewController {
         
         NetworkData.shared.getWeatherInfo(lat: coordinate!.latitude, lon: coordinate!.latitude, result: {(model) in
             DispatchQueue.main.async {
-                self.baseTemeprature.temp = Double(model.main.temp!)
-                self.baseTemeprature.pressure = Double(model.main.pressure!)
-                self.baseTemeprature.hummidity = Double(model.main.pressure!)
+                try! self.realm.write {
+                    self.baseTemeprature.temp = Double(model.main.temp!)
+                    self.baseTemeprature.pressure = Double(model.main.pressure!)
+                    self.baseTemeprature.hummidity = Double(model.main.pressure!)
+                }
                 self.curentTemperature.text = String(model.main.temp!) + "℃"
                 self.currentPressure.text = String(model.main.pressure!) + "hPa"
                 self.currentHumidity.text = String(model.main.humidity!) + "%"
@@ -110,16 +119,41 @@ class ViewController: UIViewController {
         let lCurrentWidth = self.view.frame.size.width;
         let size = 0.05 * lCurrentWidth
         let stackViews = self.view.subviews.compactMap{($0 as? UIStackView)}
-        nextButton.titleLabel?.font = UIFont(name: "Helvetica", size: size)
-        for stakView in stackViews {
+        nextButton.titleLabel?.font = UIFont(name: "Helvetica", size: (size + 5))
+        helloLabel.font = UIFont(name: "Helvetica", size: (size + 20))
         
+        for stakView in stackViews {
             let labels = stakView.arrangedSubviews.compactMap{($0 as? UILabel)}
             for label in labels {
                 label.font = UIFont(name: "Helvetica", size: size)
         }
-        
     }
 }
-
 }
+
+extension UIView {
+    func addBackground() {
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+        
+        let imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        let date = Date()
+        let formatDate = DateFormatter()
+        formatDate.dateFormat = "HH"
+       
+        let formatedDate = formatDate.string(from: date)
+        
+        if (Int(formatedDate)! > 8) && (Int(formatedDate)! < 19) {
+            imageViewBackground.image = UIImage(named: "day.jpg")
+        } else {
+            imageViewBackground.image = UIImage(named: "night.jpg")
+        }
+        imageViewBackground.contentMode = UIView.ContentMode.scaleAspectFill
+        
+        self.addSubview(imageViewBackground)
+        self.sendSubviewToBack(imageViewBackground)
+    }
+}
+    
+
 

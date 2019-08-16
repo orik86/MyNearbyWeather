@@ -18,6 +18,7 @@
 		09479586230197D600746E92 /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09479585230197D600746E92 /* NetworkData.swift */; };
 		096554C52306CA4C00FF0991 /* SortingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096554C42306CA4C00FF0991 /* SortingTableViewController.swift */; };
 		096554C82306D86A00FF0991 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096554C72306D86A00FF0991 /* RealmModel.swift */; };
+		096554CA2307022900FF0991 /* ViewControler+Animate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096554C92307022900FF0991 /* ViewControler+Animate.swift */; };
 		09D6887D2302D3860021E771 /* WindWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D6887C2302D3860021E771 /* WindWeather.swift */; };
 		CA5650D6230459FB001F622D /* AllWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5650D5230459FB001F622D /* AllWeather.swift */; };
 		CA8303122301F0530075825A /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8303112301F0530075825A /* UserNotification.swift */; };
@@ -45,6 +46,7 @@
 		09479585230197D600746E92 /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
 		096554C42306CA4C00FF0991 /* SortingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingTableViewController.swift; sourceTree = "<group>"; };
 		096554C72306D86A00FF0991 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RealmModel.swift; path = ../../../../../Documents/RealmModel.swift; sourceTree = "<group>"; };
+		096554C92307022900FF0991 /* ViewControler+Animate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControler+Animate.swift"; sourceTree = "<group>"; };
 		09D6887C2302D3860021E771 /* WindWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindWeather.swift; sourceTree = "<group>"; };
 		937B265915DAD116D9FC4200 /* Pods_NearbyWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearbyWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA913B7BE9EA957D68719DD6 /* Pods-NearbyWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearbyWeather.debug.xcconfig"; path = "Target Support Files/Pods-NearbyWeather/Pods-NearbyWeather.debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				CA83031E23033C090075825A /* ViewController+CClocationDelegate.swift */,
+				096554C92307022900FF0991 /* ViewControler+Animate.swift */,
 				CA83032023033C710075825A /* ViewController+Timer.swift */,
 			);
 			path = Extension;
@@ -324,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09479586230197D600746E92 /* NetworkData.swift in Sources */,
+				096554CA2307022900FF0991 /* ViewControler+Animate.swift in Sources */,
 				CA8303122301F0530075825A /* UserNotification.swift in Sources */,
 				0947956C23016C6C00746E92 /* ViewController.swift in Sources */,
 				0947956A23016C6C00746E92 /* AppDelegate.swift in Sources */,

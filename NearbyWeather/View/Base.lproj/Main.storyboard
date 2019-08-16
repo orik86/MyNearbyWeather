@@ -114,9 +114,16 @@
                                     <segue destination="aV6-FW-gbx" kind="show" identifier="allWeatherSegue" id="hak-DO-Scd"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qja-5N-C8v">
+                                <rect key="frame" x="164.5" y="426.5" width="85" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="qja-5N-C8v" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0GT-UF-WlZ"/>
                             <constraint firstItem="HPT-Fo-XoC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="1rn-Wf-EH4"/>
                             <constraint firstItem="XzQ-Zg-ewE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="7Jl-Qj-Gka"/>
                             <constraint firstItem="HPT-Fo-XoC" firstAttribute="top" secondItem="9bf-6b-Or0" secondAttribute="bottom" constant="20" id="8iW-yT-lz2"/>
@@ -128,6 +135,7 @@
                             <constraint firstItem="MBH-tW-a6L" firstAttribute="top" secondItem="jzb-pt-mHj" secondAttribute="bottom" constant="20" id="Pif-EN-BQ7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9bf-6b-Or0" secondAttribute="trailing" constant="20" id="U8Q-aN-kpD"/>
                             <constraint firstItem="XeS-UR-2xx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="XUl-V9-sQr"/>
+                            <constraint firstItem="qja-5N-C8v" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aVG-5q-WbT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jzb-pt-mHj" secondAttribute="trailing" constant="20" id="hJa-Xv-tPa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HPT-Fo-XoC" secondAttribute="trailing" constant="20" id="kls-ur-WWZ"/>
                             <constraint firstItem="jzb-pt-mHj" firstAttribute="top" secondItem="XeS-UR-2xx" secondAttribute="bottom" constant="20" id="lmL-da-URr"/>
@@ -144,6 +152,7 @@
                         <outlet property="curentTemperature" destination="L8h-U0-Doh" id="wFv-hg-4px"/>
                         <outlet property="currentHumidity" destination="ffq-Iw-tQd" id="vaa-56-diy"/>
                         <outlet property="currentPressure" destination="QfV-Q2-RAl" id="2G0-3V-GRv"/>
+                        <outlet property="helloLabel" destination="qja-5N-C8v" id="74K-dM-KCb"/>
                         <outlet property="nextButton" destination="XzQ-Zg-ewE" id="8UQ-eM-5U0"/>
                         <outlet property="xLoc" destination="RGp-hD-q3G" id="ddt-Lo-Lkm"/>
                         <outlet property="yLoc" destination="YQ8-Oj-9y0" id="qIs-vR-hUl"/>

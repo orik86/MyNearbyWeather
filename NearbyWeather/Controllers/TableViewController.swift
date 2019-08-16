@@ -93,7 +93,7 @@ class TableViewController: UITableViewController {
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "sortingSegue" {
           let sortingView = segue.destination as! SortingTableViewController
             sortingView.allWeather = allWeather
