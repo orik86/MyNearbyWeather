@@ -18,7 +18,7 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        LoadData(lat: lat, lon: lon)
+        loadData(lat: lat, lon: lon)
     }
     
     // MARK: - Table view data source
@@ -26,9 +26,10 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let number = allWeather?.list.count {
-            return number
+       if let number = allWeather?.list.count {
+           return number
         } else {return 0}
+       
     }
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Date:Time"
@@ -42,6 +43,7 @@ class TableViewController: UITableViewController {
         let size = 0.05 * lCurrentWidth
         cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: size)
         cell.textLabel?.font = UIFont(name: "Helvetica", size: size)
+        
         if let cod = allWeather?.list[indexPath.row].main.temp {
             cell.detailTextLabel?.text = String(cod) + "℃"
             cell.textLabel?.text = allWeather?.list[indexPath.row].dt_txt
@@ -50,11 +52,12 @@ class TableViewController: UITableViewController {
         } else {
             cell.detailTextLabel?.text = "none"
         }
+      
         return cell
     }
     
 
-    func LoadData(lat: Double, lon: Double) {
+    func loadData(lat: Double, lon: Double) {
         
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
@@ -67,6 +70,8 @@ class TableViewController: UITableViewController {
         
         let request = URLRequest(url: urlComponents.url!)
         print(request)
+        
+        
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             guard let data = data else { return }

@@ -8,13 +8,15 @@
 
 import UIKit
 import CoreLocation
+import RealmSwift
 
 
 class ViewController: UIViewController {
     var ourWeather: MainWeather?
     var lastTemperature: Float = 0.0
     var coordinate: CLLocationCoordinate2D?
-   
+    let baseTemeprature = Temperature()
+    let realm = try! Realm()
     
     @IBOutlet var xLoc: UILabel!
     @IBOutlet var yLoc: UILabel!
@@ -31,8 +33,11 @@ class ViewController: UIViewController {
        
         manager.delegate = self
         manager.startUpdatingLocation()
+        loadBase()
         timerRun()
         updateUI()
+        
+       
         
     }
 
@@ -46,14 +51,21 @@ class ViewController: UIViewController {
         
         return locationManager
     }()
-    
+    func loadBase () {
+        city.text = baseTemeprature.city
+        curentTemperature.text = String(baseTemeprature.temp)
+        currentHumidity.text = String(baseTemeprature.hummidity)
+        currentPressure.text = String(baseTemeprature.pressure)
+    }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         let location = locations.last
         coordinate = location?.coordinate
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(location!, completionHandler: {(placemark,error) -> Void in
             if let city = placemark?[0].self {
-                self.city.text = String(city.locality!)
+                self.city.text = city.locality!
+                self.baseTemeprature.city = city.locality!
             }
         })
         xLoc.text = "Lat: " + String((coordinate!.latitude * 1000).rounded() / 1000)
@@ -79,8 +91,13 @@ class ViewController: UIViewController {
     }
     
     @objc func updateTemperaure() {
+        
+        
         NetworkData.shared.getWeatherInfo(lat: coordinate!.latitude, lon: coordinate!.latitude, result: {(model) in
             DispatchQueue.main.async {
+                self.baseTemeprature.temp = Double(model.main.temp!)
+                self.baseTemeprature.pressure = Double(model.main.pressure!)
+                self.baseTemeprature.hummidity = Double(model.main.pressure!)
                 self.curentTemperature.text = String(model.main.temp!) + "℃"
                 self.currentPressure.text = String(model.main.pressure!) + "hPa"
                 self.currentHumidity.text = String(model.main.humidity!) + "%"

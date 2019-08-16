@@ -46,6 +46,16 @@ class SortingTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return nameSection[section]
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 44
+    }
+    
+  
+    // MARK: - my func
     func tableFill() {
         
         if let counters = allWeather?.list.count {
@@ -69,9 +79,4 @@ class SortingTableViewController: UITableViewController {
             }
         } else {return}
     }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return nameSection[section]
-    }
-    
 }
