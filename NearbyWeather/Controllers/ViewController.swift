@@ -58,21 +58,22 @@ class ViewController: UIViewController {
         }
         let lastWeather = realm.objects(Temperature.self)
         city.text = lastWeather.last?.city ?? "none"
-        curentTemperature.text = String((lastWeather.last?.temp ?? 0.0))
-        currentHumidity.text = String(lastWeather.last?.hummidity ?? 0.0)
-        currentPressure.text = String(lastWeather.last?.pressure ?? 0.0)
-        print(lastWeather.last?.temp ?? "", " OPOPPOPO  ",lastWeather.last?.city ?? "")
+        curentTemperature.text = String((round(lastWeather.last?.temp ?? 0.0) * 1000) / 1000) + " ℃"
+        currentHumidity.text = String((round(lastWeather.last?.hummidity ?? 1.0) * 1000) / 1000) + " %"
+        currentPressure.text = String((round(lastWeather.last?.pressure ?? 1.0) * 1000) / 1000) + " hPa"
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let location = locations.last
         coordinate = location?.coordinate
+        if coordinate != nil { nextButton.isEnabled = true } else { nextButton.isEnabled = false}
         let geoCoder = CLGeocoder()
         geoCoder.reverseGeocodeLocation(location!, completionHandler: {(placemark,error) -> Void in
             if let city = placemark?[0].self {
                 self.city.text = city.locality!
-                try! self.realm.write {
-                      self.baseTemeprature.city = city.locality!
+                 let lastWeather = self.realm.objects(Temperature.self)
+                 try! self.realm.write {
+                    lastWeather.last?.city = city.locality!
                 }
             }
         })
@@ -91,21 +92,20 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "allWeatherSegue" {
-            let allWeather = segue.destination as! TableViewController
-            allWeather.lat = coordinate!.latitude
-            allWeather.lon = coordinate!.longitude
+            let allWeatherView = segue.destination as! TableViewController
+                allWeatherView.lat = coordinate!.latitude
+                allWeatherView.lon = coordinate!.longitude
         }
     }
     
     @objc func updateTemperaure() {
-        
-        
         NetworkData.shared.getWeatherInfo(lat: coordinate!.latitude, lon: coordinate!.latitude, result: {(model) in
             DispatchQueue.main.async {
+                let lastWeather = self.realm.objects(Temperature.self)
                 try! self.realm.write {
-                    self.baseTemeprature.temp = Double(model.main.temp!)
-                    self.baseTemeprature.pressure = Double(model.main.pressure!)
-                    self.baseTemeprature.hummidity = Double(model.main.pressure!)
+                    lastWeather.last?.temp = Double(model.main.temp!)
+                    lastWeather.last?.pressure = Double(model.main.pressure!)
+                    lastWeather.last?.hummidity = Double(model.main.humidity!)
                 }
                 self.curentTemperature.text = String(model.main.temp!) + "℃"
                 self.currentPressure.text = String(model.main.pressure!) + "hPa"
@@ -122,13 +122,16 @@ class ViewController: UIViewController {
         nextButton.titleLabel?.font = UIFont(name: "Helvetica", size: (size + 5))
         helloLabel.font = UIFont(name: "Helvetica", size: (size + 20))
         
-        for stakView in stackViews {
-            let labels = stakView.arrangedSubviews.compactMap{($0 as? UILabel)}
-            for label in labels {
-                label.font = UIFont(name: "Helvetica", size: size)
-        }
+        UIView.animate(withDuration: 5, animations: {
+            for stakView in stackViews {
+                stakView.alpha = 100
+                let labels = stakView.arrangedSubviews.compactMap{($0 as? UILabel)}
+                for label in labels {
+                    label.font = UIFont(name: "Helvetica", size: size)
+                }
+            }
+        })
     }
-}
 }
 
 extension UIView {

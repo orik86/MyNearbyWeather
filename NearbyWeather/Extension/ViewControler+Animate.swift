@@ -11,7 +11,7 @@ import UIKit
 extension ViewController {
     
     func animateHello() {
-        
+        helloLabel.isOpaque = true
         let date = Date()
         let formatDate = DateFormatter()
         formatDate.dateFormat = "HH"
@@ -33,7 +33,7 @@ extension ViewController {
             self.helloLabel.alpha = CGFloat(0)
 
         })
-        helloLabel.isEnabled = false
+        helloLabel.isOpaque = false
         
     }
 }

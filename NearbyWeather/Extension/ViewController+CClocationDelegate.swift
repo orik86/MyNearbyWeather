@@ -15,11 +15,12 @@ extension ViewController: CLLocationManagerDelegate {
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
         case .restricted, .denied:
-            print("No work")
+            self.allert(title: "Ошибка получения геодаты", message: "Пожалуйста разрешите использование геолокации")
+            
         case .authorizedAlways:
-            print("mogno?")
+            print("authorized?")
+            
         case .authorizedWhenInUse:
-            print("robim")
             manager.requestAlwaysAuthorization()
         @unknown default:
             print("WhatIsThis?")
