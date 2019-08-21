@@ -116,18 +116,16 @@ class ViewController: UIViewController {
     }
     
     func updateUI() {
-        let lCurrentWidth = self.view.frame.size.width;
-        let size = 0.05 * lCurrentWidth
         let stackViews = self.view.subviews.compactMap{($0 as? UIStackView)}
-        nextButton.titleLabel?.font = UIFont(name: "Helvetica", size: (size + 5))
-        helloLabel.font = UIFont(name: "Helvetica", size: (size + 20))
+        nextButton.titleLabel?.font = UIFont(name: "Helvetica", size: (textSize(view: self.view)))
+        helloLabel.font = UIFont(name: "Helvetica", size: textSize(view: self.view))
         
         UIView.animate(withDuration: 5, animations: {
             for stakView in stackViews {
                 stakView.alpha = 100
                 let labels = stakView.arrangedSubviews.compactMap{($0 as? UILabel)}
                 for label in labels {
-                    label.font = UIFont(name: "Helvetica", size: size)
+                    label.font = UIFont(name: "Helvetica", size: textSize(view: self.view))
                 }
             }
         })

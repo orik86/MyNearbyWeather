@@ -39,10 +39,9 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cells", for: indexPath)
-        let lCurrentWidth = self.view.frame.size.width;
-        let size = 0.05 * lCurrentWidth
-        cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: size)
-        cell.textLabel?.font = UIFont(name: "Helvetica", size: size)
+        
+        cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: textSize(view: self.view))
+        cell.textLabel?.font = UIFont(name: "Helvetica", size: textSize(view: self.view))
         
         if let cod = allWeather?.list[indexPath.row].main.temp {
             cell.detailTextLabel?.text = String(cod) + "℃"
