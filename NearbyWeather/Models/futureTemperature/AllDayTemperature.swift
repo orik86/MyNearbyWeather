@@ -10,10 +10,14 @@ import Foundation
 
 class AllDayTemperature: Codable {
     
-
-    var main: OneDayTemperature
-    var dt_txt: String
-    var weather: [AllWeather]
+    let main: OneDayTemperature
+    let date: String
+    let weather: [AllWeather]
     
-
+    
+    enum CodingKeys: String, CodingKey {
+        case main
+        case date = "dx_txt"
+        case weather
+    }
 }

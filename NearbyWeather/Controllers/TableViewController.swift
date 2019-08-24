@@ -10,8 +10,7 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-    var numbers = 0
-    var numbersOfSection = 0
+
     var allWeather: MainAllWeather?
     var lat: Double = 0.0
     var lon: Double = 0.0
@@ -45,7 +44,7 @@ class TableViewController: UITableViewController {
         
         if let cod = allWeather?.list[indexPath.row].main.temp {
             cell.detailTextLabel?.text = String(cod) + "℃"
-            cell.textLabel?.text = allWeather?.list[indexPath.row].dt_txt
+            cell.textLabel?.text = allWeather?.list[indexPath.row].date
            // print(AllWeather!.list[indexPath.row].weather[0].icon)
             cell.imageView?.image = UIImage(named: allWeather!.list[indexPath.row].weather[0].icon)
         } else {
