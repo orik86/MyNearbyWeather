@@ -17,7 +17,19 @@ class AllDayTemperature: Codable {
     
     enum CodingKeys: String, CodingKey {
         case main
-        case date = "dx_txt"
+        case date = "dt_txt"
         case weather
+    }
+}
+extension AllDayTemperature {
+    func localdate() -> String {
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        guard let localDate = dateFormater.date(from: date) else { return date }
+        
+        let newDateFormater = DateFormatter()
+        newDateFormater.dateFormat = "dd.MM.yyyy HH:mm:ss"
+        let stringDate = newDateFormater.string(from: localDate)
+        return stringDate
     }
 }

@@ -44,7 +44,7 @@ class TableViewController: UITableViewController {
         
         if let cod = allWeather?.list[indexPath.row].main.temp {
             cell.detailTextLabel?.text = String(cod) + "℃"
-            cell.textLabel?.text = allWeather?.list[indexPath.row].date
+            cell.textLabel?.text = allWeather?.list[indexPath.row].localdate()
            // print(AllWeather!.list[indexPath.row].weather[0].icon)
             cell.imageView?.image = UIImage(named: allWeather!.list[indexPath.row].weather[0].icon)
         } else {

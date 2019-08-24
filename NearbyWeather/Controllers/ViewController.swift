@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import RealmSwift
+import MapKit
 
 
 class ViewController: UIViewController {
@@ -26,6 +27,8 @@ class ViewController: UIViewController {
     @IBOutlet var currentHumidity: UILabel!
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var helloLabel: UILabel!
+    
+    @IBOutlet weak var myMapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +80,10 @@ class ViewController: UIViewController {
                 }
             }
         })
+        let viewRegion = MKCoordinateRegion(center: (location?.coordinate)!, latitudinalMeters: 200, longitudinalMeters: 200)
+        self.myMapView.showsUserLocation = true
+        self.myMapView.setRegion(viewRegion, animated: true)
+        
         xLoc.text = "Lat: " + String((coordinate!.latitude * 1000).rounded() / 1000)
         yLoc.text = "Long: " + String((coordinate!.longitude * 1000).rounded() / 1000)
        
